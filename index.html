@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI HUB — Süni İntellekt Mərkəzi</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#0b1020;color:#fff;font-family:Arial,sans-serif}
+header{text-align:center;padding:65px 20px;background:linear-gradient(135deg,#30236b,#087d82)}
+h1{font-size:48px;margin:10px}
+header p{font-size:17px}
+main{max-width:1100px;margin:35px auto;padding:15px}
+input{width:100%;padding:16px;border-radius:12px;border:0;font-size:16px;margin-bottom:20px}
+.filters{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:25px}
+button{padding:11px 16px;border:1px solid #554b91;border-radius:20px;background:#171d34;color:white;cursor:pointer}
+button.active,button:hover{background:#7058df}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+.card{background:#171f35;padding:22px;border:1px solid #303b59;border-radius:16px;transition:.2s}
+.card:hover{transform:translateY(-5px);border-color:#8875ff}
+.card h2{font-size:21px}
+.card p{color:#b8c2d8;min-height:48px;line-height:1.5}
+.card a{display:inline-block;margin-top:10px;color:#a99aff;text-decoration:none;font-weight:bold}
+.card a:hover{color:white}
+footer{text-align:center;color:#9ca9c1;padding:35px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>✨ AI HUB</h1>
+<p>Süni intellekt dünyasını bir yerdə kəşf et!</p>
+<p>İdeyalarını süni intellektlə reallaşdır.</p>
+</header>
+
+<main>
+<input id="search" type="search" placeholder="🔎 AI aləti axtar...">
+
+<div class="filters">
+<button class="active" data-filter="all">Hamısı</button>
+<button data-filter="chat">Çat və yazı</button>
+<button data-filter="image">Şəkil</button>
+<button data-filter="video">Video</button>
+<button data-filter="music">Musiqi</button>
+</div>
+
+<div class="grid" id="grid">
+
+<div class="card" data-type="chat">
+<h2>🤖 ChatGPT</h2>
+<p>Suallar, yazılar və ideyalar üçün süni intellekt köməkçisi.</p>
+<a href="https://chatgpt.com/" target="_blank">Kəşf et ↗</a>
+</div>
+
+<div class="card" data-type="chat">
+<h2>✨ Gemini</h2>
+<p>Google tərəfindən hazırlanmış AI köməkçisi.</p>
+<a href="https://gemini.google.com/" target="_blank">Kəşf et ↗</a>
+</div>
+
+<div class="card" data-type="chat">
+<h2>🧠 Claude</h2>
+<p>Yazı, araşdırma və düşünmə üçün AI.</p>
+<a href="https://claude.ai/" target="_blank">Kəşf et ↗</a>
+</div>
+
+<div class="card" data-type="chat">
+<h2>💻 Copilot</h2>
+<p>Microsoft-un süni intellekt köməkçisi.</p>
+<a href="https://copilot.microsoft.com/" target="_blank">Kəşf et ↗</a>
+</div>
+
+<div class="card" data-type="image">
+<h2>🎨 Canva</h2>
+<p>Dizayn, poster və təqdimatlar hazırla.</p>
+<a href="https://www.canva.com/" target="_blank">Kəşf et ↗</a>
+</div>
+
+<div class="card" data-type="image">
+<h2>🔥 Adobe Firefly</h2>
+<p>AI ilə yaradıcı şəkillər hazırla.</p>
+<a href="https://firefly.adobe.com/" target="_blank">Kəşf et ↗</a>
+</div>
+
+<div class="card" data-type="image">
+<h2>🖼️ Leonardo AI</h2>
+<p>Rəqəmsal incəsənət və illüstrasiyalar yarat.</p>
+<a href="https://leonardo.ai/" target="_blank">Kəşf et ↗</a>
+</div>
+
+<div class="card" data-type="video">
+<h2>🎬 Runway</h2>
+<p>Süni intellektlə video layihələri hazırla.</p>
+<a href="https://runwayml.com/" target="_blank">Kəşf et ↗</a>
+</div>
+
+<div class="card" data-type="video">
+<h2>⚡ Pika</h2>
+<p>Yaradıcı ideyalarını videoya çevir.</p>
+<a href="https://pika.art/" target="_blank">Kəşf et ↗</a>
+</div>
+
+<div class="card" data-type="video">
+<h2>✂️ CapCut</h2>
+<p>Videolarını redaktə et və montaj hazırla.</p>
+<a href="https://www.capcut.com/" target="_blank">Kəşf et ↗</a>
+</div>
+
+<div class="card" data-type="music">
+<h2>🎵 Suno</h2>
+<p>Süni intellektlə musiqi yarat.</p>
+<a href="https://suno.com/" target="_blank">Kəşf et ↗</a>
+</div>
+
+<div class="card" data-type="music">
+<h2>🎙️ ElevenLabs</h2>
+<p>Mətnləri səsə çevir və audio hazırla.</p>
+<a href="https://elevenlabs.io/" target="_blank">Kəşf et ↗</a>
+</div>
+
+</div>
+</main>
+
+<footer>© 2026 AI HUB — Süni intellekt kəşf mərkəzi</footer>
+
+<script>
+const search=document.getElementById("search");
+const cards=[...document.querySelectorAll(".card")];
+const buttons=[...document.querySelectorAll(".filters button")];
+let category="all";
+
+function update(){
+ const q=search.value.toLowerCase();
+ cards.forEach(card=>{
+  const type=card.dataset.type;
+  const matchesCategory=category==="all"||type===category;
+  const matchesText=card.innerText.toLowerCase().includes(q);
+  card.style.display=matchesCategory&&matchesText?"block":"none";
+ });
+}
+
+buttons.forEach(button=>{
+ button.addEventListener("click",()=>{
+  category=button.dataset.filter;
+  buttons.forEach(b=>b.classList.remove("active"));
+  button.classList.add("active");
+  update();
+ });
+});
+
+search.addEventListener("input",update);
+</script>
+
+</body>
+</html>
